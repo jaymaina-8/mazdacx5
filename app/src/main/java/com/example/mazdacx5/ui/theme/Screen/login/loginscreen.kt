@@ -91,12 +91,12 @@ fun Login_Screen(navController: NavHostController) {
                 // After successful login, navigate to the home screen
                 navController.navigate(ROUTE_HOME)
             },
-            colors = ButtonDefaults.buttonColors(Color.Magenta),
+            colors = ButtonDefaults.buttonColors(Color.Black),
             modifier = Modifier.fillMaxWidth()
         ) {
             Text(
                 "Log In",
-                color = Color.Black,
+                color = Color.White,
                 fontSize = 20.sp,
                 fontFamily = FontFamily.Cursive
             )

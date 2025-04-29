@@ -122,12 +122,12 @@ fun Register_Screen(navController: NavHostController) {
                 // After successful registration, you might navigate to the login screen
                 navController.navigate(ROUTE_LOGIN)
             },
-            colors = ButtonDefaults.buttonColors(Color.Magenta),
+            colors = ButtonDefaults.buttonColors(Color.Black),
             modifier = Modifier.fillMaxWidth()
         ) {
             Text(
                 "Sign Up",
-                color = Color.Black,
+                color = Color.White,
                 fontSize = 20.sp,
                 fontFamily = FontFamily.Cursive
             )
