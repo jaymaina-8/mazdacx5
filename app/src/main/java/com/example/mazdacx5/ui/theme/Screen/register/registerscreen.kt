@@ -75,6 +75,7 @@ fun Register_Screen(navController: NavHostController) {
             keyboardOptions = KeyboardOptions.Default.copy (imeAction = ImeAction.Next),
             modifier = Modifier
                 .fillMaxWidth()
+                .padding(8.dp)
                 )
 
 
@@ -91,6 +92,7 @@ fun Register_Screen(navController: NavHostController) {
 
                     keyboardOptions = KeyboardOptions.Default.copy (imeAction = ImeAction.Next),
                   modifier = Modifier.fillMaxWidth()
+                      .padding(8.dp)
         )
         Spacer(modifier = Modifier.height(16.dp))
         OutlinedTextField(
