@@ -1,6 +1,7 @@
 package com.example.mazdacx5.ui.theme.Screen.login
 
 
+import android.content.Context
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
@@ -10,6 +11,7 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.OutlinedTextField
@@ -22,23 +24,25 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.text.font.FontFamily
-import androidx.compose.ui.text.input.PasswordVisualTransformation
+import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.text.input.TextFieldValue
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.rememberNavController
-
-import com.example.mazdacx5.Navigations.ROUTE_HOME
 import com.example.mazdacx5.Navigations.ROUTE_REGISTER
+import com.example.mazdacx5.data.AuthViewModel
+
+
 
 @Composable
 fun Login_Screen(navController: NavHostController) {
     var email by remember { mutableStateOf(TextFieldValue("")) }
     var password by remember { mutableStateOf(TextFieldValue("")) }
-
+    var context= LocalContext.current
     Column(
         verticalArrangement = Arrangement.Center,
         horizontalAlignment = Alignment.CenterHorizontally,
@@ -48,7 +52,7 @@ fun Login_Screen(navController: NavHostController) {
             .padding(16.dp)
     ) {
         Text(
-            "Login",
+            "Login Here",
             color = Color.Black,
             fontSize = 35.sp,
             fontFamily = FontFamily.Monospace
@@ -62,9 +66,9 @@ fun Login_Screen(navController: NavHostController) {
                     "Email",
                     color = Color.Black,
                     fontSize = 18.sp,
-                    fontFamily = FontFamily.Monospace,
-                )
-            },
+                    fontFamily = FontFamily.Monospace, ) },
+
+            keyboardOptions = KeyboardOptions.Default.copy(imeAction = ImeAction.Next),
             modifier = Modifier.fillMaxWidth()
         )
         Spacer(modifier = Modifier.height(16.dp))
@@ -77,19 +81,19 @@ fun Login_Screen(navController: NavHostController) {
                     color = Color.Black,
                     fontSize = 18.sp,
                     fontFamily = FontFamily.Monospace,
-                )
-            },
-            visualTransformation = PasswordVisualTransformation(),
+
+                    )},
+
+
+        keyboardOptions = KeyboardOptions.Default.copy(imeAction = ImeAction.Next),
             modifier = Modifier.fillMaxWidth()
         )
         Spacer(modifier = Modifier.height(30.dp))
 
         Button(
             onClick = {
-                // Handle login logic here
-                println("Login button clicked with email: ${email.text} and password: ${password.text}")
-                // After successful login, navigate to the home screen
-                navController.navigate(ROUTE_HOME)
+            val mylogin= AuthViewModel(navController, context)
+               mylogin.login(email.text.trim(),password.text.trim())
             },
             colors = ButtonDefaults.buttonColors(Color.Black),
             modifier = Modifier.fillMaxWidth()
@@ -101,8 +105,8 @@ fun Login_Screen(navController: NavHostController) {
                 fontFamily = FontFamily.Cursive
             )
         }
-        Spacer(modifier = Modifier.height(20.dp))
 
+        Spacer(modifier = Modifier.height(20.dp))
         Text(
             "Don't have an account? Register here",
             fontSize = 16.sp,
@@ -114,8 +118,8 @@ fun Login_Screen(navController: NavHostController) {
     }
 }
 
-@Preview(showBackground = true)
+@Preview
 @Composable
-private fun LoginPrev() {
+ fun  Login_Screen() {
     Login_Screen(rememberNavController())
 }
