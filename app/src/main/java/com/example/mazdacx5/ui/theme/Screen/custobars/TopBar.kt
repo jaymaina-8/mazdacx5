@@ -16,7 +16,8 @@ import androidx.compose.runtime.getValue
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.currentBackStackEntryAsState
-import com.example.mazdacx5.Navigations.ROUTE_ADD_PRODUCT
+
+import com.example.mazdacx5.Navigations.ROUTE_ADD_STUDENT
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -52,7 +53,7 @@ fun BottomNav(navController: NavHostController) {
                 label = { Text(item.label) },
                 selected = currentRoute == item.route,
                 onClick = {
-                    navController.navigate(ROUTE_ADD_PRODUCT) {
+                    navController.navigate( ROUTE_ADD_STUDENT) {
                         popUpTo(navController.graph.startDestinationId) {
                             saveState = true
                         }
